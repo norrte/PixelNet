@@ -31,8 +31,7 @@ ENV CLONE_TAG=master
 
 RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/aayushbansal/PixelNet.git . && \
     for req in $(cat tools/caffe/python/requirements.txt) pydot; do pip install $req; done && \
-    cd tools/caffe && \
-    mkdir build && cd build && \
+    cd tools/caffe && mkdir build && cd build && \
     cmake -DUSE_CUDNN=1 .. && \
     make -j"$(nproc)"
 
